@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+
+
+{% block main %}
+    {% if user.is_authenticated %}
+
+        <div class="container">
+        {% for contest in contests %}
+            <div class="row-sm-5 py-4">
+                <h3>{{ contest.title }}</h3>
+                <h4>{{ contest.info }}</h4>
+                <a href="contests/{{ contest.slug }}" class="button button-warning">Enter Prediction</a>
+            </div>
+        {% endfor %}
+        </div>
+
+    {% else %}
+    <br/>
+    {% endif %}
+
+{% endblock %}
+
+</html>

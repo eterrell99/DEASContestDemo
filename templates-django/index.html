@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--** To do: change index to dashboard **-->
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Dashboard</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/masonry/">
+
+    <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#712cf9">
+{% endblock %}
+
+{% block style %}
+      .bodyspace{
+      margin-right: 15px;
+      margin-left: 15px;
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      a.card, a.card:hover {
+        color:inherit ;
+        text-decoration: none;
+      }
+      {% endblock %}
+</head>
+<body>
+{% block main %}
+
+
+<div class="w-75 mx-auto ">
+<hr class="my-5">
+  <div class="row bodyspace" data-masonry='{"percentPosition": true }'>
+    <div class="col-sm-6 col-lg-4 mb-4 ">
+        <a href="#" class="card" style="display: inline-block">
+            <img class="card-img-top" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">New Results Have Been Published</h5>
+                <p class="card-text">Click this card to view the new results</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <a href="#" class="card p-3" style="display: inline-block">
+        <figure class="p-3 mb-0">
+          <blockquote class="blockquote">
+            <p>You're next contest opens in _4_days</p>
+          </blockquote>
+        </figure>
+      </a>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="90%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card text-bg-primary text-center p-3">
+        <figure class="mb-0">
+          <blockquote class="blockquote">
+            <p>A well-known quote, contained in a blockquote element.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer mb-0 text-white">
+            Someone famous in <cite title="Source Title">Source Title</cite>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+</div>
+
+
+<hr class="my-5">
+</div>
+
+
+
+
+{% endblock %}
+</body>
+</html>

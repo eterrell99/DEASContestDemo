@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% load crispy_forms_tags %}
+{% block main %}
+    {% if user.is_authenticated %}
+        <div class="container px-4 py-5">
+        <h2>{{ contests.title }}</h2>
+        <h5 class="pb-2">{{ contests.info }}</h5>
+            <hr class="my-5">
+            <form method="POST">
+            {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend>
+                    <div class="container">
+                        <div class="row pb-3">
+                            <div class="col col-sm">
+                                <p2 class="mb-5">Enter the first temperature in degrees Fahrenheit: </p2>
+                            </div>
+                            <div class="col col-sm">
+                                {{ form.temp1 }}
+                            </div>
+
+                            <div class="col col-sm">
+                                <p>Currently: {{ current.temp1 }}</p>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="col col-sm">
+                                <p2 class="mb-5">Enter the second temperature in degrees Fahrenheit: </p2>
+                            </div>
+                            <div class="col col-sm">
+                                {{ form.temp2 }}
+                            </div>
+
+                            <div class="col col-sm">
+                                <p>Currently: {{ current.temp2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="col col-sm">
+                                <p2 class="mb-5">Enter the cloud coverage in a percent chance: </p2>
+                            </div>
+                            <div class="col col-sm">
+                                {{ form.coverage }}
+                            </div>
+
+                            <div class="col col-sm">
+                                <p>Currently: {{ current.coverage }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    </legend>
+                </fieldset>
+                <hr class="my-5">
+            <button class="btn btn-outline-info " type="submit">Sign Up</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+</body>
+</html>

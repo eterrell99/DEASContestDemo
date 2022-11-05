@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- CSS only -->
+        <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+        <script src="jquery.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block title %}
+        {% endblock %}
+        <meta name="description" content="One location for every related to our minecraft server">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+    </head>
+    <style>
+        .dashboard {
+            display: flex;
+          }
+          
+          svg {
+            width: 114px;
+            height: 114px;
+            margin: 1em;
+          }
+          
+          .bg {
+            fill: none;
+            stroke-width: 10px;
+            stroke: #1A2C34;
+          }
+          
+          [class^="meter-"] {
+            fill: none;
+            stroke-width: 10px;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            
+          }
+          
+          .meter-1 {
+            stroke-dasharray: 360;
+            stroke-dashoffset: 100;
+            stroke: aqua;
+            animation: progress-1 1s ease-out;
+          }
+          .meter-2 {
+            stroke: lime;
+            stroke-dasharray: 360;
+            stroke-dashoffset: 160;
+            animation: progress-2 .75s ease-out;
+          }
+          .meter-3 {
+            stroke: magenta;
+            stroke-dasharray: 360;
+            stroke-dashoffset: 250;
+            animation: progress-3 .5s ease-out;
+          }
+          
+          @keyframes progress-1 {
+              from {
+                  stroke-dashoffset: 360;
+              }
+              to {
+                  stroke-dashoffset: 100;
+              }
+          }
+          
+          @keyframes progress-2 {
+            from {
+              stroke-dashoffset: 360;
+            }
+            to {
+              stroke-dashoffset: 160;
+            }
+          }
+          
+          @keyframes progress-3 {
+            from {
+              stroke-dashoffset: 360;
+            }
+            to {
+              stroke-dashoffset: 250;
+            }
+          }
+
+        {% block style %}
+        {% endblock %}
+    </style>
+    <body>
+        
+        <div class="container-fluid p-5 bg-primary text-white text-center"> 
+            <h1>DEAS Forecast Contest</h1>
+        {% block discription %}
+        {% endblock %}
+        </div>
+        {% if user.is_authenticated %}
+            <a class="btn btn-warning position-absolute top-0 end-0 " href=" {% url 'logout' %} " role="button">Logout
+
+            </a>
+        {% endif %}
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav border border-dark border-radius-sm">
+            <li class="nav-item ">
+                    <a class="nav-link text-white" href="/">{{ user.username }}</a>
+                </li>
+
+                <li class="mx-5 nav-item">
+                    <a class="nav-link text-white" href="{% url 'contests' %}">Contests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'dashboard' %}">Data</a>
+                </li>
+            </ul>
+            {% else %}
+             <ul class="navbar-nav border border-dark border-radius-sm">
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="{% url 'register' %}">Create Account</a>
+                <li/>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                <li/>
+             </ul>
+            {% endif %}
+        </nav>
+            {% if messages %}
+
+                {% for message in messages %}
+                <div id=hideme class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+
+                {% endfor %}
+            {% endif %}
+            <script type="text/javascript">
+                $(function() {
+    // setTimeout() function will be fired after page is loaded
+    // it will wait for 5 sec. and then will fire
+    // $("#successMessage").hide() function
+                    setTimeout(function() {
+                        $("#hideme").hide('blind', {}, 500)
+                    }, 500);
+                });
+            </script>
+        {% block main %}
+
+        {% endblock %}
+        
+    
+    </body>
+    </html>
+    

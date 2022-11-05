@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% load crispy_forms_tags %}
+{% block main %}
+    {% if user.is_authenticated %}
+        <div class="container px-4 py-5">
+        <h2>{{ contests.title }}</h2>
+        <h5 class="pb-2">{{ contests.info }}</h5>
+            <hr class="my-5">
+            <form method="POST">
+            {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend>
+
+
+                        <div class="row-cols-sm-auto pb-3">
+                            <p2 class="mb-5">Enter the first temperature in degrees Fahrenheit: </p2>
+                                {{ form.temp1 }}
+                            <br/>
+                        </div>
+                        <div class="row-cols-sm-auto pb-3">
+                            <p2>Enter the second temperature in degrees Fahrenheit: </p2>
+                                {{ form.temp2 }}
+                            <br/>
+                        </div>
+                        <div class="row-cols-sm-auto pb-3">
+                            <p2>Enter the cloud coverage as a percent: </p2>
+                                {{ form.coverage }}
+                            <br/>
+                        </div>
+                    </legend>
+                </fieldset>
+                <hr class="my-5">
+            <button class="btn btn-outline-info " type="submit">Sign Up</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+</body>
+</html>

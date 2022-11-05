@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+     <style>
+        ul.dropdown {
+            display: none;
+            border: 2px;
+        }
+
+
+
+
+
+     </style>
+    {% endblock %}
+
+    </head>
+<body>
+
+{% block main %}
+
+
+
+
+<h2>{{ user.username }}</h2>
+
+    <div class="container">
+    <hr class="my-1">
+    <div id="buttonDiv">
+    <button onclick="prev()" id="{{ prev }}" name="prev"> << </button>
+    <button onclick="next()" id="{{ next }}" name="next"> >> </button>
+    </div>
+    <h2 id="calDiv">{{ cal|safe }}</h2>
+    {% for entry in prediction %}
+
+            <div class="row">
+                <div class="col-sm">
+                    <p>{{ entry.contest.title }} - Submited</p>
+                </div>
+                <div class="col-sm">
+                    <a class="btn btn-primary" href="contests/{{ entry.contest.slug }}/update">Edit Submission</a>
+                </div>
+            <div class="col-sm">
+                <h1>  </h1>
+            </div>
+            <div class="col-sm">
+                <h1>  </h1>
+            </div>
+        </div>
+        <div class="row">
+            <p>Contest will close: {{ entry.contest.cCLose }}</p>
+        </div>
+
+    {% endfor %}
+
+    </div>
+<script>
+
+
+
+    function prev(){
+                var prevButton = document.getElementsByName('prev')[0].id;
+                $.ajax({
+                    type:'GET',
+                    url: "calendar/2022/" + prevButton,
+                    success: function(response) {
+                        $("#calDiv").empty();
+                        $("#buttonDiv").empty();
+                        var calDiv = response.cal
+                        $("#calDiv").append(calDiv);
+                        console.log(prevButton.id);
+                        var buttons = "<button onclick='prev()' id='"+ response.prevv + "' name='prev'> << </button> <button onclick='next()' id='"+response.nextt+"' name='next'> >> </button>"
+                        $("#buttonDiv").append(buttons);
+
+                        }
+                    ,
+                    error: function(response){
+                        alert("An error occured: Server Likely Unavailable");
+                    }
+                });
+        }
+    function next(){
+        var nextButton = document.getElementsByName('next')[0].id;
+        $.ajax({
+            type:'GET',
+            url: "calendar/2022/" + nextButton,
+            success: function(response) {
+                $("#calDiv").empty();
+                $("#buttonDiv").empty();
+                var calDiv = response.cal
+                $("#calDiv").append(calDiv);
+                console.log(nextButton.id);
+                var buttons = "<button onclick='prev()' id='"+ response.prevv + "' name='prev'> << </button> <button onclick='next()' id='"+ response.nextt+"' name='next'> >> </button>"
+                $("#buttonDiv").append(buttons);
+
+            }
+            ,
+            error: function(response){
+                alert("An error occured: Server Likely Unavailable");
+            }
+                });
+        }
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+</body>
+</html>
